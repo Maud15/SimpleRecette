@@ -34,25 +34,4 @@ public class E_Recette {
     public String toString() {
         return " " + this.id + " : " + this.name + " ";
     }
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<E_Ingredient> getIngredients() {
-        return ingredients;
-    }
-    public void setIngredients(List<E_Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
 }
