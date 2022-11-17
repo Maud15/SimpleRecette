@@ -28,4 +28,24 @@ public class E_Ingredient {
     public E_Ingredient() {
     }
 
+    public Long getIngredientId() {
+        return ingredientId;
+    }
+    public void setIngredientId(Long ingredientId) {
+        this.ingredientId = ingredientId;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
+    public List<E_Recette> getRecettes() {
+        return recettes;
+    }
+    public void setRecettes(List<E_Recette> recettes) {
+        this.recettes = recettes;
+    }
 }
