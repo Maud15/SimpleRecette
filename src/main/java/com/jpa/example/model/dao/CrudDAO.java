@@ -5,14 +5,14 @@ import java.util.Optional;
 
 public interface CrudDAO<E> {
 
-        List<E> findAll();
+    E create(E element);
 
-        Optional<E> findById(Long id);
+    List<E> findAll();
+    Optional<E> findById(Long id);
 
-        boolean delete(Long id);
+    E update(E element);
 
-        E update(E element);
+    boolean delete(Long id);
 
-        E create(E element);
 
 }

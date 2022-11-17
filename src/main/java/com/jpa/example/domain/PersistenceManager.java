@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 public class PersistenceManager {
     private static EntityManagerFactory EMF_INSTANCE;
 
-    public EntityManagerFactory getEmfInstance(String persistanceUnitName) {
+    public static EntityManagerFactory getEmfInstance(String persistanceUnitName) {
         if(EMF_INSTANCE == null) {
             EMF_INSTANCE = Persistence.createEntityManagerFactory(persistanceUnitName);
         }
