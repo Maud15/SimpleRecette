@@ -63,8 +63,21 @@ public class RecetteJPACrudDAO implements CrudDAO<E_Recette> {
     }
 
     @Override
-    public E_Recette update(E_Recette element) {
-        return null;
+    public E_Recette update(E_Recette recipeChanged) {
+        E_Recette recipeResult = null;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            recipeResult = em.merge(recipeChanged);
+            et.commit();
+        } catch(Exception e) {
+            et.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return recipeResult;
     }
 
     @Override
