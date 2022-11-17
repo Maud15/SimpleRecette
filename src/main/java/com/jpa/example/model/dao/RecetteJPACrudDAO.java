@@ -81,8 +81,27 @@ public class RecetteJPACrudDAO implements CrudDAO<E_Recette> {
     }
 
     @Override
-    public boolean delete(Long id) {
-        return false;
+    public boolean delete(Long idRecipe) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            Optional<E_Recette> optRecipeToDelete = findById(idRecipe);
+            E_Recette recipeToDelete;
+            if (optRecipeToDelete.isPresent()){
+                recipeToDelete = optRecipeToDelete.get();
+            } else {
+                throw new Exception("Impossible de trouver la recette d'id " + idRecipe);
+            }
+            em.remove(recipeToDelete);
+            et.commit();
+        } catch(Exception e) {
+            e.printStackTrace();
+            if (et.isActive()) { et.rollback(); }
+        } finally {
+            em.close();
+        }
+        return true;
     }
 
 
