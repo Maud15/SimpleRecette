@@ -4,6 +4,7 @@ import com.jpa.example.domain.PersistenceManager;
 import com.jpa.example.model.E_Recette;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.ArrayList;
@@ -49,8 +50,16 @@ public class RecetteJPACrudDAO implements CrudDAO<E_Recette> {
     }
 
     @Override
-    public Optional<E_Recette> findById(Long id) {
-        return Optional.empty();
+    public Optional<E_Recette> findById(Long recipeId) {
+        Optional<E_Recette> optRecipe = Optional.empty();
+        EntityManager em = emf.createEntityManager();
+        try {
+            optRecipe = Optional.of(em.find(E_Recette.class, recipeId));
+        } catch(EntityNotFoundException e) {
+            System.out.println("Aucune recette trouvée avec l'ID " + recipeId);
+            e.printStackTrace();
+        }
+        return optRecipe;
     }
 
     @Override
