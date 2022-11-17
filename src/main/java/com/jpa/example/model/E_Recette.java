@@ -16,7 +16,7 @@ public class E_Recette {
     @Column(name = "nom", nullable = false)
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.PERSIST}) //, fetch = FetchType.EAGER
     @JoinTable(
             name = "recette_ingredient",
             joinColumns = @JoinColumn(name = "id_recette"),
@@ -26,5 +26,12 @@ public class E_Recette {
 
     public E_Recette() {
     }
+    public E_Recette(String name) {
+        this.name = name;
+    }
 
+    @Override
+    public String toString() {
+        return " " + this.id + " : " + this.name + " ";
+    }
 }

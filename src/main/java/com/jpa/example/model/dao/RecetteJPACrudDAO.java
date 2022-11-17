@@ -5,6 +5,8 @@ import com.jpa.example.model.E_Recette;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +36,16 @@ public class RecetteJPACrudDAO implements CrudDAO<E_Recette> {
 
     @Override
     public List<E_Recette> findAll() {
-        return null;
+        List<E_Recette> recipeList = new ArrayList<>();
+        EntityManager em = emf.createEntityManager();
+        try {
+            recipeList = em.createQuery("from E_Recette", E_Recette.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ( em != null ) em.close();
+        }
+        return recipeList;
     }
 
     @Override
